@@ -11,9 +11,7 @@
 | first_name            | string    | null: false |
 | last_name_kana        | string    | null: false |
 | first_name_kana       | string    | null: false |
-| user_birth_date_year  | integer   | null: false |
-| user_birth_date_month | integer   | null: false |
-| user_birth_date_day   | integer   | null: false |
+| birth_date            | date      | null: false |
 
 ### Association
 
@@ -27,7 +25,6 @@
 | name                   | string     | null: false                    |
 | price                  | integer    | null: false                    |
 | text                   | text       | null: false                    |
-| buyable                | boolean    | null: false                    |
 | category_id            | integer    | null: false                    |
 | sales_status_id        | integer    | null: false                    |
 | shopping_fee_status_id | integer    | null: false                    |
@@ -35,18 +32,26 @@
 | scheduled_delivery_id  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 
-
 ### Association
 
 - belongs_to :user
 - has_one :order
-- belongs_to_active_hash :category
-- belongs_to_active_hash :sales_status
-- belongs_to_active_hash :shopping_fee_statue
-- belongs_to_active_hash :prefecture
-- belongs_to_active_hash :scheduled_delivery
 
 ## orders テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
+| delivery_address | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- belongs_to :delivery_address
+
+## delivery_address テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -56,11 +61,9 @@
 | addresses     | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- belongs_to_active_hash :prefecture
+- belongs_to :order
+
+
