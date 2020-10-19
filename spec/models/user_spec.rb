@@ -5,6 +5,23 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe '新規登録/ユーザー情報' do
+    it 'emailに@が含まれていると登録できる' do
+      @user.email = 'a@a'
+      expect(@user).to be_valid
+    end
+    it 'passwordが6文字以上だと登録できる' do
+      @user.password = '1234abcd'
+      expect(@user).to be_valid
+    end
+    it 'passwordが半角英数字混合だと登録できる' do
+      @user.password = '1234abcd'
+      expect(@user).to be_valid
+    end
+    it 'passwordとpassword_confirmationが一致すると登録できる' do
+      @user.password = '2222bbbb'
+      @user.password_confirmation = '2222bbbb'
+      expect(@user).to be_valid
+    end
     it 'nicknameが空だと登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -14,6 +31,11 @@ RSpec.describe User, type: :model do
       @user.email = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
+    end
+    it 'emailに@が含まれていないと登録できない' do
+      @user.email = 'a'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
     it 'emailがすでにデータベースに存在するものと一致した場合登録できない' do
       @user.save
@@ -31,8 +53,13 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-    it 'passwordが半角英数字混合でないと登録できない' do
+    it 'passwordが半角数字のみだと登録できない' do
       @user.password = '11111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password include both half-width letters and numbers. Don't type full-width.")
+    end
+    it 'passwordが半角英字のみだと登録できない' do
+      @user.password = 'aaaaaaaa'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password include both half-width letters and numbers. Don't type full-width.")
     end
@@ -43,6 +70,22 @@ RSpec.describe User, type: :model do
     end
   end
   describe '新規登録/本人情報確認' do
+    it 'last_nameが全角（漢字・ひらがな・カタカナ）だと登録できる' do
+      @user.last_name = '山田'
+      expect(@user).to be_valid
+    end
+    it 'first_nameが全角（漢字・ひらがな・カタカナ）だと登録できる' do
+      @user.first_name = '太郎'
+      expect(@user).to be_valid
+    end
+    it 'last_name_kanaが全角（カタカナ）だと登録できる' do
+      @user.last_name_kana = 'ヤマダ'
+      expect(@user).to be_valid
+    end
+    it 'first_name_kanaが全角（カタカナ）だと登録できる' do
+      @user.first_name_kana = 'タロウ'
+      expect(@user).to be_valid
+    end
     it 'last_nameが空だと登録できない' do
       @user.last_name = ''
       @user.valid?
