@@ -5,21 +5,7 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe '新規登録/ユーザー情報' do
-    it 'emailに@が含まれていると登録できる' do
-      @user.email = 'a@a'
-      expect(@user).to be_valid
-    end
-    it 'passwordが6文字以上だと登録できる' do
-      @user.password = '1234abcd'
-      expect(@user).to be_valid
-    end
-    it 'passwordが半角英数字混合だと登録できる' do
-      @user.password = '1234abcd'
-      expect(@user).to be_valid
-    end
-    it 'passwordとpassword_confirmationが一致すると登録できる' do
-      @user.password = '2222bbbb'
-      @user.password_confirmation = '2222bbbb'
+    it '全ての入力内容が満たされている時に登録できる' do
       expect(@user).to be_valid
     end
     it 'nicknameが空だと登録できない' do
@@ -70,20 +56,7 @@ RSpec.describe User, type: :model do
     end
   end
   describe '新規登録/本人情報確認' do
-    it 'last_nameが全角（漢字・ひらがな・カタカナ）だと登録できる' do
-      @user.last_name = '山田'
-      expect(@user).to be_valid
-    end
-    it 'first_nameが全角（漢字・ひらがな・カタカナ）だと登録できる' do
-      @user.first_name = '太郎'
-      expect(@user).to be_valid
-    end
-    it 'last_name_kanaが全角（カタカナ）だと登録できる' do
-      @user.last_name_kana = 'ヤマダ'
-      expect(@user).to be_valid
-    end
-    it 'first_name_kanaが全角（カタカナ）だと登録できる' do
-      @user.first_name_kana = 'タロウ'
+    it '全ての入力内容が満たされている時に登録できる' do
       expect(@user).to be_valid
     end
     it 'last_nameが空だと登録できない' do
