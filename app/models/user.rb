@@ -6,14 +6,13 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
-    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
+    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
+    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters.' }
+    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters.' }
     validates :birth_date
-
   end
 
-  VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[\d])/
-  validates :password, format: { with: VALID_PASSWORD_REGEX, message: "include both half-width letters and numbers. Don't type full-width."}
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])/.freeze
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: "include both half-width letters and numbers. Don't type full-width." }
 end
