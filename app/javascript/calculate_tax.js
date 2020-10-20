@@ -6,13 +6,15 @@ function calculate_tax (){
     const price = item_price.value
 
     const add_tax_price = document.getElementById("add-tax-price")
-    const price_tax = price * 0.1
+    let price_tax = price * 0.1
+    price_tax = Math.floor(price_tax)
     add_tax_price.innerHTML = price_tax
 
     const profit = document.getElementById("profit")
-    const price_profit = price - price_tax
+    let price_profit = price - price_tax
+    price_profit = Math.floor(price_profit)
     profit.innerHTML = price_profit
   })
 }
 
-window.addEventListener('load', calculate_tax);
+setInterval(calculate_tax, 1000)

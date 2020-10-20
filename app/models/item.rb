@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name
-    validates :price, inclusion: {in: 300..9999999 }, format: { with: /\A?=.*?[\d]/, message: 'is invalid. Input half-width number.' }
+    validates :price, inclusion: {in: 300..9999999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
     validates :text
     validates :category_id,             numericality: { other_than: 0 } 
     validates :sales_status_id,         numericality: { other_than: 0 } 
