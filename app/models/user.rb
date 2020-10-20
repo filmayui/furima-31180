@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   VALID_ZENKAKU_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
   VALID_KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
