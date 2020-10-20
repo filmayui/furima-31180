@@ -11,13 +11,13 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name
-    validates :price, inclusion: {in: 300..9999999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
     validates :text
-    validates :category_id,             numericality: { other_than: 0 } 
-    validates :sales_status_id,         numericality: { other_than: 0 } 
-    validates :shopping_fee_status_id,  numericality: { other_than: 0 } 
-    validates :prefecture_id,           numericality: { other_than: 0 } 
-    validates :scheduled_delivery_id,   numericality: { other_than: 0 } 
+    validates :category_id,             numericality: { other_than: 0 }
+    validates :sales_status_id,         numericality: { other_than: 0 }
+    validates :shopping_fee_status_id,  numericality: { other_than: 0 }
+    validates :prefecture_id,           numericality: { other_than: 0 }
+    validates :scheduled_delivery_id,   numericality: { other_than: 0 }
     validates :image
   end
 end

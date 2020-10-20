@@ -27,27 +27,27 @@ RSpec.describe Item, type: :model do
     it 'category_idが0だと登録できない' do
       @item.category_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 0")
+      expect(@item.errors.full_messages).to include('Category must be other than 0')
     end
     it 'sales_status_idが0だと登録できない' do
       @item.sales_status_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Sales status must be other than 0")
+      expect(@item.errors.full_messages).to include('Sales status must be other than 0')
     end
     it 'shopping_fee_status_idが0だと登録できない' do
       @item.shopping_fee_status_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shopping fee status must be other than 0")
+      expect(@item.errors.full_messages).to include('Shopping fee status must be other than 0')
     end
     it 'prefecture_idが0だと登録できない' do
       @item.prefecture_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
     end
     it 'scheduled_delivery_idが0だと登録できない' do
       @item.scheduled_delivery_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 0")
+      expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 0')
     end
     it 'imageが空だと登録できない' do
       @item.image = nil
@@ -57,12 +57,12 @@ RSpec.describe Item, type: :model do
     it '販売価格の範囲が¥300~¥9999999の間でないと登録できない' do
       @item.price = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
     it '販売価格が半角数字でないと登録できない' do
       @item.price = '３３３'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not included in the list")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
   end
 end

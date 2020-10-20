@@ -1,5 +1,4 @@
 class SalesStatus < ActiveHash::Base
-
   self.data = [
     { id: 0, name: '--' },
     { id: 1, name: '新品、未使用' },
@@ -7,6 +6,6 @@ class SalesStatus < ActiveHash::Base
     { id: 3, name: '目立った傷や汚れなし' },
     { id: 4, name: 'やや傷や汚れあり' },
     { id: 5, name: '傷や汚れあり' },
-    { id: 6, name: '全体的に状態が悪い' },
+    { id: 6, name: '全体的に状態が悪い' }
   ]
 end
